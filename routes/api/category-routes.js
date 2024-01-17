@@ -42,16 +42,16 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const newCategory = await Category.create(req.body);
-    res(200).json(newCategory);
+    res.status(200).json(newCategory);
   } catch (err) {
-    res(400).json(err);
+    res.status(400).json(err);
   }
   // create a new category
 });
 
 router.put("/:id", async (req, res) => {
   try {
-    const newcategoryNata = await Category.update(
+    const newcategoryData = await Category.update(
       {
         category_name: req.body.category_name,
       },
@@ -61,15 +61,14 @@ router.put("/:id", async (req, res) => {
         },
       }
     );
-    if (!newcategoryNata) {
+    if (!newcategoryData) {
       res.status(404).json("No category with that id is found");
       return;
     }
-    res.status(200).json(newcategoryNata);
+    res.status(200).json("Successfully Updated one category!");
   } catch (err) {
     res.status(500).json(err);
   }
-
   // update a category by its `id` value
 });
 
@@ -86,7 +85,7 @@ router.delete("/:id", async (req, res) => {
       });
       return;
     }
-    res.status(200).json(categoryData);
+    res.status(200).json('Successfully deleted one category');
   } catch (err) {
     res.status(500).json(err);
   }
