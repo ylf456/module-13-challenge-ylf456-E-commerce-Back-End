@@ -43,11 +43,14 @@ router.get("/:id", async (req, res) => {
 
 // create new product
 router.post("/", (req, res) => {
+  console.log("body before change")
+  console.log(req.body);
   req.body = {
     product_name: req.body.product_name,
     price: req.body.price,
     stock: req.body.stock,
     tagIds: req.body.tag_id,
+    category_id: req.body.category_id
   };
   /* req.body should look like this...
     {
@@ -57,6 +60,9 @@ router.post("/", (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
+ console.log()
+ console.log(req.body)
+
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
