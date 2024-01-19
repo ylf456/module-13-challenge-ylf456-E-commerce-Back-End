@@ -65,7 +65,8 @@ router.put("/:id", async (req, res) => {
       res.status(404).json("No category with that id is found");
       return;
     }
-    res.status(200).json("Successfully Updated one category!");
+    //res.status(200).json("Successfully Updated one category!");
+    res.status(200).json(newcategoryData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -85,7 +86,8 @@ router.delete("/:id", async (req, res) => {
       });
       return;
     }
-    res.status(200).json('Successfully deleted one category');
+   // res.status(200).json('Successfully deleted one category');
+    res.status(200).json(categoryData);
   } catch (err) {
     res.status(500).json(err);
   }
